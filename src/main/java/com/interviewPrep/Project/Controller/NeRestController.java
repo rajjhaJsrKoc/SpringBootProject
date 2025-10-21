@@ -59,5 +59,20 @@ public class NeRestController {
         networkElementService.deleteNetworkElement(ip);
         return ResponseEntity.ok("Ip has been deleted");
     }
+    //GET /products?category_id=5&search=phone&page=1&limit=20
+    @GetMapping
+    public ResponseEntity<String> getProducts(
+            @RequestParam(required = false) Long category_id,
+            @RequestParam(required = false) String search,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "20") int limit) {
+
+        String response = String.format(
+                "Filtering products -> category_id: %s, search: %s, page: %d, limit: %d",
+                category_id, search, page, limit
+        );
+
+        return ResponseEntity.ok(response);
+    }
 
 }
